@@ -46,7 +46,7 @@ RUN apt-get update \
     && echo "daemon off;" >> /etc/nginx/nginx.conf
 COPY --from=builder /app  /app
 
-COPY --chown=www --from=builder /app /var/www/html/app/
+COPY --from=builder /app /var/www/html/app/
 COPY --from=builder /app/default /etc/nginx/conf.d/
 COPY --from=builder /app/default /etc/nginx/sites-enabled/
 COPY --from=builder /app/default /etc/nginx/sites-available/
