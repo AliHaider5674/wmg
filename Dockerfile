@@ -44,7 +44,7 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
     && echo "daemon off;" >> /etc/nginx/nginx.conf
-COPY --chown=www --from=builder /app  /app
+COPY --from=builder /app  /app
 
 COPY --chown=www --from=builder /app /var/www/html/app/
 COPY --from=builder /app/default /etc/nginx/conf.d/
