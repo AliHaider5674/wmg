@@ -1,0 +1,699 @@
+name: "Shipment Flat File Schema"
+type: "fixLength"
+sections:
+    header:
+        definition:
+            parse: "preg_match('/.{40}DEAHDR/', $content)" ## REGEX
+            revert: "isset($content['record_type']) && $content['record_type']=='DEAHDR'"
+        fields:
+            business_partner:
+                index: 0
+                length: '5'
+            business_partner_ods_code:
+                index: 1
+                length: '5'
+            message_reference:
+                index: 2
+                length: '20'
+            message_source_code:
+                index: 3
+                length: '5'
+            message_type_code:
+                index: 4
+                length: '5'
+            record_type:
+                index: 5
+                length: '6'
+            date:
+                index: 6
+                length: '8'
+            time:
+                index: 7
+                length: '6'
+            batch_run_identifier:
+                index: 8
+                length: '15'
+            distribution_centre_code:
+                index: 9
+                length: '5'
+            trading_partner_name:
+                index: 10
+                length: '30'
+            order_number:
+                index: 11
+                length: '8'
+            logistic_order_number:
+                index: 12
+                length: '6'
+            billing_number:
+                index: 13
+                length: '12'
+            order_type:
+                index: 14
+                length: '5'
+            order_source:
+                index: 15
+                length: '5'
+            order_method:
+                index: 16
+                length: '5'
+            customer_number:
+                index: 17
+                length: '15'
+            customer_number_iln:
+                index: 18
+                length: '13'
+            bill_customer_number:
+                index: 19
+                length: '15'
+            bill_customer_number_iln:
+                index: 20
+                length: '13'
+            delivery_customer_number:
+                index: 21
+                length: '15'
+            delivery_customer_number_iln:
+                index: 22
+                length: '13'
+            headquarter_customer_number:
+                index: 23
+                length: '15'
+            headquarter_customer_number_iln:
+                index: 24
+                length: '13'
+            delivery_address_name_1:
+                index: 25
+                length: '30'
+            delivery_address_name_2:
+                index: 26
+                length: '30'
+            delivery_address_name_3:
+                index: 27
+                length: '30'
+            delivery_address_street:
+                index: 28
+                length: '30'
+            delivery_address_region:
+                index: 29
+                length: '30'
+            delivery_address_zip:
+                index: 30
+                length: '15'
+            delivery_address_city:
+                index: 31
+                length: '30'
+            delivery_address_country:
+                index: 32
+                length: '5'
+            order_date:
+                index: 33
+                length: '8'
+            delivery_date:
+                index: 34
+                length: '8'
+            delivery_note_remark:
+                index: 35
+                length: '100'
+            internal_remark:
+                index: 36
+                length: '80'
+            customer_e_order_rf:
+                index: 37
+                length: '20'
+            customer_order_reference:
+                index: 38
+                length: '20'
+            contact_person:
+                index: 39
+                length: '30'
+            shipment_mode:
+                index: 40
+                length: '5'
+            priority:
+                index: 41
+                length: '3'
+            currency:
+                index: 42
+                length: '5'
+            delivery_special_instruction:
+                index: 43
+                length: '8'
+            despatch_advice_flag:
+                index: 44
+                length: '1'
+            payment_mode_code:
+                index: 45
+                length: '3'
+            date_of_maurity:
+                index: 46
+                length: '8'
+            backorder_code:
+                index: 47
+                length: '3'
+            sales_person:
+                index: 48
+                length: '6'
+            chain_number:
+                index: 49
+                length: '3'
+            m+e_iln:
+                index: 50
+                length: '15'
+            order_changed_code:
+                index: 51
+                length: '5'
+            shipment_date:
+                index: 52
+                length: '8'
+            expected_shipment_date:
+                index: 53
+                length: '8'
+            total_number_of_parcels:
+                index: 54
+                length: '6'
+            total_weight:
+                index: 55
+                length: '10'
+            interchange_iln:
+                index: 56
+                length: '40'
+            cust_own_nb:
+                index: 57
+                length: '15'
+            cust_own_nm:
+                index: 58
+                length: '30'
+            hq_interchange_iln:
+                index: 59
+                length: '40'
+            hq_cust_own_nb:
+                index: 60
+                length: '15'
+            hq_cust_own_nm:
+                index: 61
+                length: '30'
+            carrier_number:
+                index: 62
+                length: '4'
+            'flag_"order_consolidation"':
+                index: 63
+                length: '1'
+            total_number_of_pallets:
+                index: 64
+                length: '6'
+            delivery_note__:
+                index: 65
+                length: '30'
+            number_of_merged_deliveries:
+                index: 66
+                length: '4'
+            jde_doc_no:
+                index: 67
+                length: '12'
+            total_amount_of_the_delivery:
+                index: 68
+                length: '12'
+            manual_delivery_address_flag:
+                index: 69
+                length: '1'
+            filler:
+                index: 70
+                length: '133'
+    reference:
+        definition:
+            parse: "preg_match('/.{40}DEAREF/', $content)" ## REGEX
+            revert: "isset($content['record_type']) && $content['record_type']=='DEAREF'"
+        fields:
+            business_partner:
+                index: 0
+                length: '5'
+            business_partner_ods_code:
+                index: 1
+                length: '5'
+            message_reference:
+                index: 2
+                length: '20'
+            message_source_code:
+                index: 3
+                length: '5'
+            message_type_code:
+                index: 4
+                length: '5'
+            record_type:
+                index: 5
+                length: '6'
+            date:
+                index: 6
+                length: '8'
+            time:
+                index: 7
+                length: '6'
+            batch_run_identifier:
+                index: 8
+                length: '15'
+            distribution_centre_code:
+                index: 9
+                length: '5'
+            trading_partner_name:
+                index: 10
+                length: '30'
+            order_number:
+                index: 11
+                length: '8'
+            address_type:
+                index: 12
+                length: '5'
+            name:
+                index: 13
+                length: '50'
+            supplement_1:
+                index: 14
+                length: '50'
+            supplement_2:
+                index: 15
+                length: '50'
+            street:
+                index: 16
+                length: '50'
+            region:
+                index: 17
+                length: '50'
+            zip:
+                index: 18
+                length: '50'
+            city:
+                index: 19
+                length: '50'
+            country_code:
+                index: 20
+                length: '5'
+            po_box:
+                index: 21
+                length: '50'
+            telephone_number:
+                index: 22
+                length: '50'
+            fax_number:
+                index: 23
+                length: '50'
+            internet_address:
+                index: 24
+                length: '255'
+            gln:
+                index: 26
+                length: '20'
+            filler:
+                index: 26
+                length: '76'
+    order:
+        definition:
+            parse: "preg_match('/.{40}DEAORF/', $content)" ## REGEX
+            revert: "isset($content['record_type']) && $content['record_type']=='DEAORF'"
+        fields:
+            business_partner:
+                index: 0
+                length: '5'
+            business_partner_ods_code:
+                index: 1
+                length: '5'
+            message_reference:
+                index: 2
+                length: '20'
+            message_source_code:
+                index: 3
+                length: '5'
+            message_type_code:
+                index: 4
+                length: '5'
+            record_type:
+                index: 5
+                length: '6'
+            date:
+                index: 6
+                length: '8'
+            time:
+                index: 7
+                length: '6'
+            batch_run_identifier:
+                index: 8
+                length: '15'
+            distribution_centre_code:
+                index: 9
+                length: '5'
+            trading_partner_name:
+                index: 10
+                length: '30'
+            order_number:
+                index: 11
+                length: '8'
+            customer_e_order_rf: #customer_order_ref: #THIS IS ORDER NUMBER
+                index: 12
+                length: '20'
+            orig_order_number:
+                index: 13
+                length: '8'
+            orig_order_date:
+                index: 14
+                length: '8'
+            child_order_number:
+                index: 15
+                length: '8'
+            carrier_number:
+                index: 16
+                length: '4'
+            carrier_name:
+                index: 17
+                length: '30'
+            filler:
+                index: 18
+                length: '803'
+    parcel:
+        definition:
+            parse: "preg_match('/.{40}PCLRF/', $content)" ## REGEX
+            revert: "isset($content['record_type']) && $content['record_type']=='PCLRF'"
+        fields:
+            business_partner:
+                index: 0
+                length: '5'
+            business_partner_ods_code:
+                index: 1
+                length: '5'
+            message_reference:
+                index: 2
+                length: '20'
+            message_source_code:
+                index: 3
+                length: '5'
+            message_type_code:
+                index: 4
+                length: '5'
+            record_type:
+                index: 5
+                length: '6'
+            date:
+                index: 6
+                length: '8'
+            time:
+                index: 7
+                length: '6'
+            batch_run_identifier:
+                index: 8
+                length: '15'
+            order_number:
+                index: 9
+                length: '8'
+            customer_order_ref: #THIS IS ORDER NUMBER
+                index: 10
+                length: '20'
+            orig_order_number:
+                index: 11
+                length: '8'
+            carrier_parcel_number:
+                index: 12
+                length: '30'
+            consignement_number:
+                index: 13
+                length: '20'
+            parcel_weight:
+                index: 14
+                length: '8'
+            carrier_name:
+                index: 15
+                length: '30'
+            filler:
+                index: 16
+                length: '800'
+    line:
+        definition:
+            parse: "preg_match('/.{40}DEADTL/', $content)" ## REGEX
+            revert: "isset($content['record_type']) && $content['record_type']=='DEADTL'"
+        fields:
+            business_partner:
+                index: 0
+                length: '5'
+            business_partner_ods_code:
+                index: 1
+                length: '5'
+            message_reference:
+                index: 2
+                length: '20'
+            message_source_code:
+                index: 3
+                length: '5'
+            message_type_code:
+                index: 4
+                length: '5'
+            record_type:
+                index: 5
+                length: '6'
+            date:
+                index: 6
+                length: '8'
+            time:
+                index: 7
+                length: '6'
+            batch_run_identifier:
+                index: 8
+                length: '15'
+            distribution_centre_code:
+                index: 9
+                length: '5'
+            trading_partner_name:
+                index: 10
+                length: '30'
+            order_number:
+                index: 11
+                length: '8'
+            order_line_number:
+                index: 12
+                length: '5'
+            backorder_merged_line:
+                index: 13
+                length: '1'
+            item_number:
+                index: 14
+                length: '20'
+            customer_item_number:
+                index: 15
+                length: '20'
+            catalogue_item_barcode:
+                index: 16
+                length: '20'
+            cust_cat_it_bar_cd:
+                index: 17
+                length: '20'
+            order_quantity:
+                index: 18
+                length: '8'
+            expected_delivery_quantity:
+                index: 19
+                length: '8'
+            backorder_quantity:
+                index: 20
+                length: '8'
+            backorder_reason_code:
+                index: 21
+                length: '1'
+            backorder_reason_text:
+                index: 22
+                length: '80'
+            unit_ppd:
+                index: 23
+                length: '12'
+            unit_rrp:
+                index: 24
+                length: '12'
+            alternative_unit_rrp:
+                index: 25
+                length: '12'
+            currency_code:
+                index: 26
+                length: '5'
+            price_code:
+                index: 27
+                length: '6'
+            vat_percentage:
+                index: 28
+                length: '4'
+            camp_cd:
+                index: 29
+                length: '5'
+            delivery_date:
+                index: 30
+                length: '8'
+            delivery_note_remark:
+                index: 31
+                length: '100'
+            delivery_special_instruction:
+                index: 32
+                length: '8'
+            free_goods_flag:
+                index: 33
+                length: '1'
+            manual_discount:
+                index: 34
+                length: '5'
+            force_to_backorder:
+                index: 35
+                length: '1'
+            number_of_parcel:
+                index: 36
+                length: '6'
+            parcel_weight:
+                index: 37
+                length: '10'
+            customer_order_reference:
+                index: 38
+                length: '20'
+            customer_e_order_reference:
+                index: 39
+                length: '20'
+            local_label:
+                index: 40
+                length: '5'
+            alias_catalogue_item_code:
+                index: 41
+                length: '20'
+            mapped_bo_cd:
+                index: 42
+                length: '5'
+            allocated_quantity:
+                index: 43
+                length: '8'
+            nve:
+                index: 44
+                length: '30'
+            nve_parcel_weight:
+                index: 45
+                length: '12'
+            nve_parcel_height:
+                index: 46
+                length: '12'
+            nve_parcel_length:
+                index: 47
+                length: '12'
+            nve_parcel_width:
+                index: 48
+                length: '12'
+            pallet_flag:
+                index: 49
+                length: '1'
+            short_shipment_reason:
+                index: 50
+                length: '5'
+            source_order_number:
+                index: 51
+                length: '8'
+            source_order_line_number:
+                index: 52
+                length: '8'
+            customer_order_line_ref:
+                index: 53
+                length: '10'
+            end_customer_order_line_ref:
+                index: 54
+                length: '10'
+            participant:
+                index: 55
+                length: '30'
+            title:
+                index: 56
+                length: '30'
+            configuration_code:
+                index: 57
+                length: '5'
+            child_ord_no:
+                index: 58
+                length: '8'
+            child_ord_li_no:
+                index: 59
+                length: '5'
+            cv_bill-title_text:
+                index: 60
+                length: '30'
+            qlf_22_gross_total_amount_of_the_line__unit_rrp:
+                index: 61
+                length: '12'
+            qlf_146_unit_price__unit_net_pri_4_____________:
+                index: 62
+                length: '12'
+            qlf_203_net_total_amount__unit_ppd_4___________:
+                index: 63
+                length: '12'
+            outer_carton_parcel_number:
+                index: 64
+                length: '30'
+            discount:
+                index: 65
+                length: '6'
+            estimated_delivery_date:
+                index: 66
+                length: '8'
+            back_order_deleted_flag:
+                index: 67
+                length: '1'
+            net_price:
+                index: 68
+                length: '12'
+            delivery_charge:
+                index: 69
+                length: '12'
+            vat_value:
+                index: 70
+                length: '12'
+            ppd_vat_value:
+                index: 71
+                length: '12'
+            delivery_charge_percent:
+                index: 72
+                length: '5'
+            campaign_discount_percent:
+                index: 73
+                length: '5'
+            original_order_source:
+                index: 74
+                length: '5'
+            orig_back_order_reason_code:
+                index: 75
+                length: '1'
+            max_discount_percentage:
+                index: 76
+                length: '6'
+            filler:
+                index: 77
+                length: '38'
+    footer:
+        definition:
+            parse: "preg_match('/.{40}MSGTRL/', $content)" ## REGEX
+            revert: "isset($content['record_type']) && $content['record_type']=='MSGTRL'"
+        fields:
+            business_partner:
+                index: 0
+                length: '5'
+            business_partner_ods_code:
+                index: 1
+                length: '5'
+            message_reference:
+                index: 2
+                length: '20'
+            message_source_code:
+                index: 3
+                length: '5'
+            message_type_code:
+                index: 4
+                length: '5'
+            record_type:
+                index: 5
+                length: '6'
+            date:
+                index: 6
+                length: '8'
+            time:
+                index: 7
+                length: '6'
+            batch_run_identifier:
+                index: 8
+                length: '15'
+            number_of_lines:
+                index: 9
+                length: '9'

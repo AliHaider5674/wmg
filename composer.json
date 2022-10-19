@@ -1,0 +1,92 @@
+{
+    "name": "wmi/athena-fulfillment",
+    "description": "An application that communicates with warehouses",
+    "type": "project",
+    "require": {
+        "php": "^7.4",
+        "ext-json": "*",
+        "ext-soap": "*",
+        "bensampo/laravel-enum": "^3",
+        "doctrine/dbal": "^2.9, !=2.10.3",
+        "fideloper/proxy": "^4.2",
+        "guzzlehttp/guzzle": "^7.0.1",
+        "laravel/framework": "^8.0",
+        "laravel/passport": "^10.0",
+        "laravel/tinker": "^2.0",
+        "laravel/ui": "^3.0",
+        "lcobucci/jwt": "~3.3.0",
+        "league/flysystem-aws-s3-v3": "^1.0",
+        "league/flysystem-cached-adapter": "^1.0",
+        "league/flysystem-sftp": "^1.0",
+        "league/oauth2-client": "^2.6",
+        "phpclassic/php-shopify": "^1.1",
+        "predis/predis": "^1.1",
+        "printful/php-api-sdk": "^2.2",
+        "sokil/php-isocodes": "^3.3",
+        "wmi/file-data-converter": "^2.0",
+        "wmi/laravel-auth": "^1.0",
+        "wmi/laravel-core": "^8.1",
+        "wmi/laravel-mom-sdk": "^8.0"
+    },
+    "require-dev": {
+        "beyondcode/laravel-dump-server": "^1.5",
+        "filp/whoops": "^2.0",
+        "fzaninotto/faker": "^1.9",
+        "mockery/mockery": "^1.4",
+        "nunomaduro/collision": "^4.1",
+        "phpmd/phpmd": "^2.9",
+        "phpro/grumphp": "^0.22",
+        "phpunit/phpunit": "^9.0",
+        "sebastian/phpcpd": "^6.0",
+        "squizlabs/php_codesniffer": "^3.5",
+        "wmi/athena-fulfillment-dev": "^1.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Seeders\\": "database/seeders/",
+            "Database\\Factories\\": "database/factories/"
+        },
+        "files": [
+            "./app/Core/Helper/Utility.php",
+            "./app/Core/Helper/Db.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "dont-discover": [
+                "wmi/laravel-core"
+            ]
+        }
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ]
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "repositories": {
+        "private-packagist": {
+            "type": "composer",
+            "url": "https://repo.packagist.com/wmas-ecommerce/"
+        },
+        "packagist.org": false
+    }
+}

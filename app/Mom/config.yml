@@ -1,0 +1,11 @@
+############################################################
+# This is a configuration file that list all subscribers
+# for each events
+############################################################
+events:
+  magento.logistics.warehouse_management.request_shipment:
+    subscribers:
+      - \App\Mom\MomEventSubscribers\RequestShipment
+  salesforce.order_management.request_shipment:
+    subscribers:
+      - \App\Mom\MomEventSubscribers\RequestShipment

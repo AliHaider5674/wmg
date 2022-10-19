@@ -1,0 +1,218 @@
+sections:
+    header:
+        definition:
+            parse: "preg_match('/.{40}MSGHDR/', $content)"
+            revert: "isset($content['record_type']) && $content['record_type']=='MSGHDR'"
+        fields:
+            business_partner:
+                index: 0
+                length: '5'
+            business_partner_ods_code:
+                index: 1
+                length: '5'
+            message_reference:
+                index: 2
+                length: '20'
+            message_source_code:
+                index: 3
+                length: '5'
+            message_type_code:
+                index: 4
+                length: '5'
+            record_type:
+                index: 5
+                length: '6'
+            date:
+                index: 6
+                length: '8'
+            time:
+                index: 7
+                length: '6'
+            batch_run_identifier:
+                index: 8
+                length: '15'
+    line:
+        definition:
+            parse: "preg_match('/.{40}LINHDR/', $content)"
+            revert: "isset($content['record_type']) && $content['record_type']=='LINHDR'"
+        fields-inherit:
+            - "header"
+        fields:
+            catalogue_item_code:
+                index: 9
+                length: '20'
+            original_catalogue_item_code:
+                index: 10
+                length: '20'
+            alias_catalogue_item_code:
+                index: 11
+                length: '20'
+            catalogue_item_bar_code:
+                index: 12
+                length: '20'
+            title:
+                index: 13
+                length: '30'
+            configure_code:
+                index: 14
+                length: '5'
+            component_units:
+                index: 15
+                length: '3'
+            catalogue_item_type_code:
+                index: 16
+                length: '3'
+            release_date:
+                index: 17
+                length: '8'
+            seperation_code:
+                index: 18
+                length: '3'
+            deletion_date:
+                index: 19
+                length: '8'
+            cedc_deletion_date:
+                index: 20
+                length: '8'
+            inactive_flag:
+                index: 21
+                length: '1'
+            label_number:
+                index: 22
+                length: '30'
+            original_label_number:
+                index: 23
+                length: '30'
+            price_code:
+                index: 24
+                length: '6'
+            price_code_description:
+                index: 25
+                length: '30'
+            edi_type_code:
+                index: 26
+                length: '5'
+            age_restriction:
+                index: 27
+                length: '3'
+            sales_category_code:
+                index: 28
+                length: '5'
+            sap_project_code:
+                index: 29
+                length: '18'
+            return_control_code:
+                index: 30
+                length: '5'
+            return_right_flag:
+                index: 31
+                length: '1'
+            special_treatment_number:
+                index: 32
+                length: '2'
+            last_recall_date:
+                index: 33
+                length: '8'
+            main_participant_name:
+                index: 34
+                length: '30'
+            physical_item_length:
+                index: 35
+                length: '12'
+            physical_item_width:
+                index: 36
+                length: '12'
+            physical_item_heigth:
+                index: 37
+                length: '12'
+            physical_item_diameter:
+                index: 38
+                length: '12'
+            physical_item_volume:
+                index: 39
+                length: '36'
+            packing_unit:
+                index: 40
+                length: '4'
+            statistical_number:
+                index: 41
+                length: '5'
+            allocated_quantity:
+                index: 42
+                length: '9'
+            available_quantity:
+                index: 43
+                length: '9'
+            not_available_quantity:
+                index: 44
+                length: '9'
+            pending_quantity:
+                index: 45
+                length: '9'
+            pending_return_quantity:
+                index: 46
+                length: '9'
+            return_quantity:
+                index: 47
+                length: '9'
+            reserved_quantity:
+                index: 48
+                length: '9'
+            rework_quantity:
+                index: 49
+                length: '9'
+            scrapped_quantity:
+                index: 50
+                length: '9'
+            delivery_block,_start_date:
+                index: 51
+                length: '8'
+            delivery_block,_end_date:
+                index: 52
+                length: '8'
+            product_group_field_1:
+                index: 53
+                length: '5'
+            product_group_field_2:
+                index: 54
+                length: '5'
+            product_group_field_3:
+                index: 55
+                length: '5'
+            product_group_field_4:
+                index: 56
+                length: '5'
+            product_group_field_5:
+                index: 57
+                length: '5'
+            distribution_center_number:
+                index: 58
+                length: '20'
+            physical_item_weight:
+                index: 59
+                length: '10'
+            open_purchase_orders:
+                index: 60
+                length: '8'
+            local_composer:
+                index: 61
+                length: '50'
+            config_description:
+                index: 62
+                length: '30'
+            conductor:
+                index: 63
+                length: '30'
+            filler:
+                index: 64
+                length: '303'
+            item_action_type:
+                index: 65
+                length: '2'
+    footer:
+        definition:
+            parse: "preg_match('/.{40}MSGTRL/', $content)"
+            revert: "isset($content['record_type']) && $content['record_type']=='MSGTRL'"
+        fields-inherit:
+            - "header"
+        fields: { }

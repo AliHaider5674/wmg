@@ -1,0 +1,415 @@
+name: "Order Flat File Schema"
+type: "fixLength"
+sections:
+    header:
+        definition:
+            parse: "preg_match('/.{40}MSGHDR/', $content)" ## REGEX
+            revert: "isset($content['record_type']) && $content['record_type']=='MSGHDR'"
+        fields:
+            business_partner:
+                index: 0
+                length: 5
+                default: WMGUS
+            business_partner_ods_code:
+                index: 1
+                length: 5
+                default: "M"
+            message_reference:
+                index: 2
+                length: 20
+            message_source_code:
+                index: 3
+                length: 5
+            message_type_code:
+                index: 4
+                length: 5
+                default: .
+            record_type:
+                index: 5
+                length: 6
+                default: "MSGHDR"
+            date:
+                index: 6
+                length: 8
+            time:
+                index: 7
+                length: 6
+            batch_run_identifier:
+                index: 8
+                length: 15
+    order:
+        definition:
+            parse: "preg_match('/.{40}ORDHDR/', $content)" ## REGEX
+            revert: "isset($content['record_type']) && $content['record_type']=='ORDHDR'"
+        fields-inherit:
+            - "header"
+        fields:
+            distribution_centre_code:
+                index: 9
+                length: 5
+            trading_partner_name:
+                index: 10
+                length: 30
+            order_index: #order_number:
+                index: 11
+                length: 8
+            logisitc_order_number:
+                index: 12
+                length: 6
+            order_type:
+                index: 13
+                length: 5
+                default: "D2C"
+            order_source:
+                index: 14
+                length: 5
+                default: .
+            order_method:
+                index: 15
+                length: 5
+                default: .
+            customer_number:
+                index: 16
+                length: 15
+                default: "D2C"
+            customer_number_type:
+                index: 17
+                length: 3
+                default: "ODS"
+            bill_customer_number:
+                index: 18
+                length: 15
+            bill_customer_number_type:
+                index: 19
+                length: 3
+            delivery_customer_number:
+                index: 20
+                length: 15
+            delivery_customer_number_type:
+                index: 21
+                length: 3
+            headquarter_customer_number:
+                index: 22
+                length: 15
+            hq_cust_nb_type:
+                index: 23
+                length: 3
+            customer_name:
+                index: 24
+                length: 30
+            delivery_address_name_2:
+                index: 25
+                length: 30
+            delivery_address_name_3:
+                index: 26
+                length: 30
+            address1: #delivery_address_street
+                index: 27
+                length: 30
+            state: #delivery address region
+                index: 28
+                length: 30
+            zip: #delivery address zip
+                index: 29
+                length: 15
+            city: #delivery address city
+                index: 30
+                length: 30
+            country_code:
+                index: 31
+                length: 5
+            order_date:
+                index: 32
+                length: 8
+            delivery_date:
+                index: 33
+                length: 8
+            delivery_note_remark:
+                index: 34
+                length: 100
+            internal_remark:
+                index: 35
+                length: 80
+            customer_order_reference:
+                index: 36
+                length: 20
+            customer_e_order_rf:
+                index: 37
+                length: 20
+            contact_person:
+                index: 38
+                length: 30
+            shipment_mode:
+                index: 39
+                length: 5
+            priority:
+                index: 40
+                length: 3
+            currency:
+                index: 41
+                length: 5
+            delivery_special_instruction:
+                index: 42
+                length: 8
+            despatch_advice_flag:
+                index: 43
+                length: 1
+            payment_mode_code:
+                index: 44
+                length: 3
+            date_of_maurity:
+                index: 45
+                length: 8
+            backorder_code:
+                index: 46
+                length: 3
+            sales_person:
+                index: 47
+                length: 6
+            special_instruction_free_text:
+                index: 48
+                length: 200
+            chain_number:
+                index: 49
+                length: 3
+            m+e_iln:
+                index: 50
+                length: 15
+            order_changed_code:
+                index: 51
+                length: 5
+            shipment_date:
+                index: 52
+                length: 8
+            expected_shipment_date:
+                index: 53
+                length: 8
+            total_number_of_parcels:
+                index: 54
+                length: 6
+            total_weight:
+                index: 55
+                length: 10
+            allow_order_merge_flag:
+                index: 56
+                length: 1
+            transmission_order_date:
+                index: 57
+                length: 8
+            transmission_order_time:
+                index: 58
+                length: 6
+            jde_doc_no:
+                index: 59
+                length: 12
+            total_amount_of_the_delivery:
+                index: 60
+                length: 12
+            complete_order_delivery:
+                index: 61
+                length: 1
+            payment_term_code:
+                index: 62
+                length: 7
+            campaign_number:
+                index: 63
+                length: 10
+            point_of_sales_code:
+                index: 64
+                length: 8
+            point_of_sales_abbreviation:
+                index: 65
+                length: 8
+            carrier_number:
+                index: 66
+                length: 4
+            tax_id:
+                index: 67
+                length: 30
+    item:
+        definition:
+            parse: "preg_match('/.{40}ORDDTL/', $content)" ## REGEX
+            revert: "isset($content['record_type']) && $content['record_type']=='ORDDTL'"
+        fields-inherit:
+            - "header"
+        fields:
+            source_id:
+                index: 9
+                length: 5
+            trading_partner_name:
+                index: 10
+                length: 30
+            order_index: #order_number:
+                index: 11
+                length: 8
+            line_no:
+                index: 12
+                length: 5
+            sku: #item_no
+                index: 13
+                length: 20
+            cust_item_no:
+                index: 14
+                length: 20
+            barcode:
+                index: 15
+                length: 20
+            order_quantity:
+                index: 16
+                length: 8
+            delivery_quantity:
+                index: 17
+                length: 8
+            backorder_quantity:
+                index: 18
+                length: 8
+            backorder_reason_code:
+                index: 19
+                length: 1
+            backorder_reason_text:
+                index: 20
+                length: 80
+            unit_ppd:
+                index: 21
+                length: 12
+            unit_rrp:
+                index: 22
+                length: 12
+            alternative_unit_rrp:
+                index: 23
+                length: 12
+            currency_for_alternative_unit_rrp:
+                index: 24
+                length: 5
+            camp_cd:
+                index: 25
+                length: 5
+            delivery_date:
+                index: 26
+                length: 8
+            delivery_note_remark:
+                index: 27
+                length: 100
+            delivery_special_instruction:
+                index: 28
+                length: 8
+            free_goods_flag:
+                index: 29
+                length: 1
+            manual_discount:
+                index: 30
+                length: 5
+                default: 0
+            force_to_backorder:
+                index: 31
+                length: 1
+            manual_price:
+                index: 32
+                length: 12
+            number_of_parcel:
+                index: 33
+                length: 6
+            parcel_weight:
+                index: 34
+                length: 10
+            cust_order_ref:
+                index: 35
+                length: 20
+            end_cust_order_ref:
+                index: 36
+                length: 20
+            avoir:
+                index: 37
+                length: 5
+            r.i.m._return_date:
+                index: 38
+                length: 8
+            special_treatment_number:
+                index: 39
+                length: 2
+            financial_discount_date:
+                index: 40
+                length: 8
+            source_order_quantity:
+                index: 41
+                length: 8
+            customer_order_line_ref:
+                index: 42
+                length: 10
+            end_customer_order_line_ref:
+                index: 43
+                length: 10
+            cust_pric:
+                index: 44
+                length: 12
+            price_code:
+                index: 45
+                length: 6
+            force_backorder_quantity:
+                index: 46
+                length: 4
+            allow_backorder_flag:
+                index: 47
+                length: 1
+            delivery_special_instruction_freetext:
+                index: 48
+                length: 255
+            partial_shipment_flag:
+                index: 49
+                length: 1
+            cv_bill-title_text:
+                index: 50
+                length: 30
+            qlf_146_unit_price__unit_net_pri_4:
+                index: 51
+                length: 12
+            qlf_203_net_total_amount__unit_ppd_4:
+                index: 52
+                length: 12
+            reference_line_number:
+                index: 53
+                length: 5
+            sales_catalogue_group:
+                index: 54
+                length: 50
+            cust_item_bar_cd:
+                index: 55
+                length: 20
+            cust_item_txt:
+                index: 56
+                length: 80
+            delivery_special_instruction_1:
+                index: 57
+                length: 8
+            delivery_special_instruction_2:
+                index: 58
+                length: 8
+            delivery_special_instruction_3:
+                index: 59
+                length: 8
+            delivery_special_instruction_4:
+                index: 60
+                length: 8
+            return_right_flag:
+                index: 61
+                length: 1
+                default: 1
+    footer:
+        definition:
+            parse: "preg_match('/.{40}MSGTRL/', $content)"
+            revert: "isset($content['record_type']) && $content['record_type']=='MSGTRL'"
+        fields-inherit:
+            - "header"
+        fields:
+            number_of_lines:
+                index: 9
+                length: 9
+
+    ## MES REQUIRE EMPTY LINE AT THE END OF THE TIME
+    newEndLine:
+        definition:
+            parse: "$index==$last"
+            revert: "$index==$last"
+        fields:
+            empty:
+              length: 0

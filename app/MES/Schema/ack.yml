@@ -1,0 +1,291 @@
+sections:
+    ######################################
+    # Order header
+    # orders that got sent to warehouse
+    ######################################
+    order_sent:
+        definition:
+            parse: "preg_match('/.{40}T2W  H/', $content)" ## REGEX
+            revert: "isset($content['record_type']) && $content['record_type']=='T2W  H'"
+        fields:
+            business_partner:
+                index: 0
+                length: '5'
+            business_partner_ods_code:
+                index: 1
+                length: '5'
+            message_reference:
+                index: 2
+                length: '20'
+            message_source_code:
+                index: 3
+                length: '5'
+            message_type_code:
+                index: 4
+                length: '5'
+            record_type:
+                index: 5
+                length: '6'
+            date:
+                index: 6
+                length: '8'
+            time:
+                index: 7
+                length: '6'
+            batch_run_identifier:
+                index: 8
+                length: '15'
+            delivery_number:
+                index: 9
+                length: '8'
+            customer_order_reference:
+                index: 10
+                length: '30'
+            'no_use_tmp_holder':
+                index: 11
+                length: '8'
+            currency:
+                index: 12
+                length: '5'
+            delivery_note_remark:
+                index: 13
+                length: '100'
+            tracking_date:
+                index: 14
+                length: '14'
+            dispatch_date:
+                index: 15
+                length: '8'
+            customer_number:
+                index: 16
+                length: '15'
+            short_customer_number:
+                index: 17
+                length: '15'
+            delivery_iln:
+                index: 18
+                length: '15'
+            buyer_iln:
+                index: 19
+                length: '15'
+            invoice_iln:
+                index: 20
+                length: '15'
+            additional_customer_reference:
+                index: 21
+                length: '20'
+            order_type:
+                index: 22
+                length: '5'
+            order_date:
+                index: 23
+                length: '8'
+            delivery_date:
+                index: 24
+                length: '8'
+            cust_delivery_date:
+                index: 25
+                length: '8'
+            ship_conf_date:
+                index: 26
+                length: '8'
+            freight_or_order_charges:
+                index: 27
+                length: '8'
+            carrier_code:
+                index: 28
+                length: '10'
+            invoice_number:
+                index: 29
+                length: '12'
+            net_invoice_value:
+                index: 30
+                length: '12'
+            delivery_address_name_1:
+                index: 31
+                length: '30'
+            delivery_address_name_2:
+                index: 32
+                length: '30'
+            delivery_address_name_3:
+                index: 33
+                length: '30'
+            delivery_address_street:
+                index: 34
+                length: '30'
+            delivery_address_region:
+                index: 35
+                length: '30'
+            delivery_address_zip:
+                index: 36
+                length: '15'
+            delivery_address_city:
+                index: 37
+                length: '30'
+            delivery_address_country:
+                index: 38
+                length: '5'
+            shipment_mode:
+                index: 39
+                length: '5'
+            order_source:
+                index: 40
+                length: '5'
+            order_method:
+                index: 41
+                length: '5'
+            filler:
+                index: 42
+                length: '562'
+    ###########################################
+    # ORDER LINE
+    # Order lines that got sent to warehouse
+    ###########################################
+    line_sent:
+        definition:
+            parse: "preg_match('/.{40}T2W  L/', $content)" ## REGEX
+            revert: "isset($content['record_type']) && $content['record_type']=='T2W  L'"
+        fields:
+            business_partner:
+                index: 0
+                length: '5'
+            business_partner_ods_code:
+                index: 1
+                length: '5'
+            message_reference:
+                index: 2
+                length: '20'
+            message_source_code:
+                index: 3
+                length: '5'
+            message_type_code:
+                index: 4
+                length: '5'
+            record_type:
+                index: 5
+                length: '6'
+            date:
+                index: 6
+                length: '8'
+            time:
+                index: 7
+                length: '6'
+            batch_run_identifier:
+                index: 8
+                length: '15'
+            delivery_number:
+                index: 9
+                length: '8'
+            customer_order_reference:
+                index: 28
+                length: '30'
+            reference_line_number:
+                index: 11
+                length: '10'
+            item_number:
+                index: 12
+                length: '20'
+            order_quantity:
+                index: 13
+                length: '8'
+            available_quantity:
+                index: 14
+                length: '8'
+            backorder_quantity:
+                index: 15
+                length: '8'
+            backorder_reason_code:
+                index: 16
+                length: '1'
+            quantity_not_delivered:
+                index: 17
+                length: '8'
+            delivery_line_number:
+                index: 18
+                length: '10'
+            source_order_number:
+                index: 19
+                length: '10'
+            source_order_line_number:
+                index: 20
+                length: '8'
+            customer_trade_discount_%:
+                index: 21
+                length: '6'
+            additional_discount_%:
+                index: 22
+                length: '6'
+            net_price:
+                index: 23
+                length: '12'
+            price_code:
+                index: 24
+                length: '6'
+            unit_ppd:
+                index: 25
+                length: '12'
+            line_net_value:
+                index: 26
+                length: '12'
+            camp_cd:
+                index: 27
+                length: '5'
+            customer_e_order_reference:
+                index: 28
+                length: '20'
+            delivery_special_instruction_1:
+                index: 29
+                length: '8'
+            delivery_special_instruction_2:
+                index: 30
+                length: '8'
+            delivery_special_instruction_3:
+                index: 31
+                length: '8'
+            delivery_special_instruction_4:
+                index: 32
+                length: '8'
+            invoice_text:
+                index: 33
+                length: '30'
+            customer_price:
+                index: 34
+                length: '10'
+            filler:
+                index: 35
+                length: '614'
+    footer:
+        definition:
+            parse: "preg_match('/.{40}MSGTRL/', $content)" ## REGEX
+            revert: "isset($content['record_type']) && $content['record_type']=='MSGTRL'"
+        fields:
+            business_partner:
+                index: 0
+                length: '5'
+            business_partner_ods_code:
+                index: 1
+                length: '5'
+            message_reference:
+                index: 2
+                length: '20'
+            message_source_code:
+                index: 3
+                length: '5'
+            message_type_code:
+                index: 4
+                length: '5'
+            record_type:
+                index: 5
+                length: '6'
+            date:
+                index: 6
+                length: '8'
+            time:
+                index: 7
+                length: '6'
+            batch_run_identifier:
+                index: 8
+                length: '15'
+            number_of_lines:
+                index: 9
+                length: '9'
