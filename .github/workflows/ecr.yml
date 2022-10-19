@@ -37,4 +37,6 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:"latest" .
           echo "Pushing image to ECR..."
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:"latest"
-          aws ecs update-service --cluster wmg-sample-store --service wmg-sample-store-service-1,wmg-sample-store-service-0,wmg-sample-store-service-2 --force-new-deployment
+          aws ecs update-service --cluster wmg-sample-store --service wmg-sample-store-service-0 --force-new-deployment
+          aws ecs update-service --cluster wmg-sample-store --service wmg-sample-store-service-1 --force-new-deployment
+          aws ecs update-service --cluster wmg-sample-store --service wmg-sample-store-service-2 --force-new-deployment
