@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
 
-name: Node Project `my-app` CI on ECR
+name: laraval Project `my-app` CI on ECR
 
 jobs:
   deploy:
@@ -37,4 +37,4 @@ jobs:
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:"latest" .
           echo "Pushing image to ECR..."
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:"latest"
-          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$"latest""
+          echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:"latest""
